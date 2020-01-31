@@ -1,0 +1,67 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+      <title>{% block title %}KAIST Clubs Homepage{% endblock %}</title>
+      {%- block metas %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {%- endblock metas %}
+
+      {%- block styles %}
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+      {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+
+    {% block navbar %}
+      {% include 'nav.html' with context %}
+    {%- endblock navbar %}
+    {%- if message %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {%- endif %}
+    {%- if err %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Error!</strong> {{ err }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {%- endif %}
+
+
+    <main role="main" class="flex-shrink-0">
+    {% block content -%}
+    {%- endblock content %}
+    </main>
+    <div class="footer navbar navbar-light bg-light fixed-bottom">
+      <div class="container">
+        <span class="text-muted">CS360 Spring 2019 - Team 8</span>
+      </div>
+    </div>
+
+    {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {%- endblock scripts %}
+
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}
+
+{#{% block navbar %}
+{{nav.frontend_top.render()}}
+{% endblock %}#}
